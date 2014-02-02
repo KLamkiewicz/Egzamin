@@ -1,6 +1,8 @@
 package com.example.jeedemo.domain;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @NamedQuery(name ="gasnica.getAllGasnice" , query = "Select g FROM Gasnica g ")
@@ -21,7 +25,8 @@ public class Gasnica {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double pojemnosc;
-	private int rokProdukcji;
+	//private int rokProdukcji;
+	private Date dataProdukcji;
 	private String kodSeryjny = "";
 	@ManyToOne
 	private Producent producent;
@@ -39,12 +44,12 @@ public class Gasnica {
 	public void setPojemnosc(double pojemnosc) {
 		this.pojemnosc = pojemnosc;
 	}
-	public int getRokProdukcji() {
-		return rokProdukcji;
-	}
-	public void setRokProdukcji(int rokProdukcji) {
-		this.rokProdukcji = rokProdukcji;
-	}
+//	public int getRokProdukcji() {
+//		return rokProdukcji;
+//	}
+//	public void setRokProdukcji(int rokProdukcji) {
+//		this.rokProdukcji = rokProdukcji;
+//	}
 	public Producent getProducent() {
 		return producent;
 	}
@@ -63,7 +68,12 @@ public class Gasnica {
 	public void setKodSeryjny(String kodSeryjny) {
 		this.kodSeryjny = kodSeryjny;
 	}
-
+	public Date getDataProdukcji() {
+		return dataProdukcji;
+	}
+	public void setDataProdukcji(Date dataProdukcji) {
+		this.dataProdukcji = dataProdukcji;
+	}
 
 	
 }
