@@ -30,8 +30,10 @@ public class ProducentManager {
 		listaGasnic = em.createNamedQuery("gasnica.getAllGasnice").getResultList();
 		producent = em.find(Producent.class, producent.getId());
 		for(Gasnica g : listaGasnic){
-			if(g.getProducent().equals(producent)){
-				g.setProducent(null);
+			if(g.getProducent()!=null){
+				if(g.getProducent().equals(producent)){
+					g.setProducent(null);
+				}
 			}
 		}
 		//producent.setDeleted(true);

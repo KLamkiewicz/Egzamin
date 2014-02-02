@@ -61,7 +61,7 @@ public class GasnicaManager {
 	}
 	
 	public void edytujGasnica(Gasnica gasnica){
-		Gasnica g = em.find(Gasnica.class, gasnica.getId());
+		
 		em.merge(gasnica);
 	}
 	

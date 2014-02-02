@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -34,9 +37,9 @@ public class ProducentFormBean implements Serializable{
 		this.producent = producent;
 	}
 	
-	public String addProducent(){
+	public void addProducent(){
 		pm.addProducent(producent);
-		return null;
+		//return null;
 	}
 	
 	
@@ -50,9 +53,18 @@ public class ProducentFormBean implements Serializable{
 		return null;
 	}
 	
+	public String deleteProducentTabela(){
+		pm.deleteProducent(producent);
+		return null;
+	}
+	
 	public String doEdycji(Producent producent){
 		this.producent = producent;
 		return "edytujProducenta";
+	}
+	
+	public String doEdycjiTabela(){
+		return "edytujProducenta.xhtml?faces-redirect=true";
 	}
 	
 	public String edytujProducent(){
@@ -60,5 +72,11 @@ public class ProducentFormBean implements Serializable{
 		this.producent = new Producent();
 		return null;
 	}
+	
+    public void destroyWorld(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "System Error",  "Please try again later.");  
+          
+        FacesContext.getCurrentInstance().addMessage(null, message);  
+    } 
 	
 }

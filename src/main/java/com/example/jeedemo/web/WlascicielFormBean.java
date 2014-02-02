@@ -51,10 +51,19 @@ public class WlascicielFormBean implements Serializable{
 		wm.deleteWlasciciel(wlasciciel);
 		return null;
 	}
+
+	
+	public void deleteWlascicielTabela(){
+		wm.deleteWlasciciel(wlasciciel);
+	}
 	
 	public String doEdycji(Wlasciciel wlasciciel){
 		this.wlasciciel = wlasciciel;
 		return "edytujWlasciciela";
+	}
+	
+	public String doEdycjiTabela(){
+		return "edytujWlasciciela.xhtml?faces-redirect=true";
 	}
 	
 	public String edytujWlasciciel(){

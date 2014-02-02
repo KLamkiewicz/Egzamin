@@ -2,43 +2,52 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/ht	ml"
+	xmlns:p="http://primefaces.org/ui" 
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form>
-			<h:dataTable value="#{wlascicielBean.allWlasciciele}" var="item">
-			
-				<f:facet name="header">Lista wlascicieli</f:facet>
-				
-				<h:column>
-					<f:facet name="header">Imie</f:facet>
-					<h:outputText value="#{item.imie}" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Nazwisko</f:facet>
-					<h:outputText value="#{item.nazwisko}" />
-				</h:column>
-				
-				<h:column>
-					<h:commandLink value="Usun" action="#{wlascicielBean.deleteWlasciciel(item)}"/>
-				</h:column>
-				<h:column>
-					<h:commandLink value="Edytuj" action="#{wlascicielBean.doEdycji(item)}"/>
-				</h:column>
-				
-				
-				<!-- 
-				<h:column>
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}"
-						action="#{personBean.deletePerson}" />
-					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
-				</h:column>
-				-->
+		<h:form id="form">
 
-			</h:dataTable>
+			<p:contextMenu for="wlasciciel">
+				<p:menuitem value="Podglad" update="display" icon="ui-icon-search"
+					oncomplete="PF('wlascicielDialog').show()" />
+				<p:menuitem value="Usun" update="wlasciciel" icon="ui-icon-close"
+					actionListener="#{wlascicielBean.deleteWlascicielTabela}" ajax="true" />
+			</p:contextMenu>
+
+			<p:dataTable id="wlasciciel" var="car"
+				value="#{wlascicielBean.allWlasciciele}" rowKey="#{car.id}"
+				selection="#{wlascicielBean.wlasciciel}" selectionMode="single">
+
+			<p:column headerText="Imie">  
+            	#{car.imie}  
+            </p:column>
+            <p:column headerText="Nazwisko">  
+            	#{car.nazwisko} 
+       		</p:column>
+
+
+
+			</p:dataTable>
+
+			<p:dialog header="Car Detail" widgetVar="wlascicielDialog"
+				resizable="false" width="200" showEffect="clip" hideEffect="fold"
+				id="dialog">
+
+				<h:panelGrid id="display" columns="2" cellpadding="4">
+
+					<h:outputText value="Imie:" />
+					<h:outputText value="#{wlascicielBean.wlasciciel.imie}"
+						style="font-weight:bold" />
+						
+					<h:outputText value="Nazwisko:" />
+					<h:outputText value="#{wlascicielBean.wlasciciel.nazwisko}"
+						style="font-weight:bold" />
+
+				</h:panelGrid>
+			</p:dialog>
+
 		</h:form>
 
 	</ui:define>
