@@ -3,53 +3,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{gasnicaBean.allGasnice}" var="item">
+			<p:dataTable value="#{gasnicaBean.allGasnice}" var="item">
 				<f:facet name="header">#{msg.gasnicaList}</f:facet>
-				<h:column>
+				<p:column>
 					<f:facet name="header">#{msg.capacity}</f:facet>
 					<h:outputText value="#{item.pojemnosc}" />
-				</h:column>
+				</p:column>
 
-				<h:column>
+				<p:column>
 					<f:facet name="header">#{msg.yop}</f:facet>
 					<h:outputText value="#{item.rokProdukcji}" />
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Producent</f:facet>
 					<h:outputText value="#{item.producent.nazwa}"/>
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Wlasciciele</f:facet>
 					<h:dataTable value="#{item.wlasciciele}" var="w">
 						<h:column>
 							<h:outputText value="#{w.imie} #{w.nazwisko} " />
 						</h:column>
 					</h:dataTable>
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<h:commandLink value="Usun" action="#{gasnicaBean.deleteGasnica(item)}"/>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<h:commandLink value="Edytuj" action="#{gasnicaBean.doEdycji(item)}"/>
-				</h:column>
+				</p:column>
 				
-				<!-- 
-				<h:column>
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}"
-						action="#{personBean.deletePerson}" />
-					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
-				</h:column>
-				-->
 
-			</h:dataTable>
+			</p:dataTable>
 		</h:form>
 
 	</ui:define>

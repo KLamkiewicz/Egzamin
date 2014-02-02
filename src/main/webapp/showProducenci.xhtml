@@ -18,27 +18,28 @@
 				<p:menuitem value="Edytuj" action="#{producentBean.doEdycjiTabela}" icon="ui-icon-arrowrefresh-1-w" ajax="false"/>
 			</p:contextMenu>
 
-			<p:dataTable id="producent" var="car"
-				value="#{producentBean.allProducenci}" rowKey="#{car.id}"
+			<p:dataTable id="producent" var="producent"
+				value="#{producentBean.allProducenci}" rowKey="#{producent.id}"
 				selection="#{producentBean.producent}" selectionMode="single">
 
-				<p:column headerText="Nazwa">  
-            #{car.nazwa}  
+		<p:column headerText="Nazwa">  
+            #{producent.nazwa}  
         </p:column>
 
 
 
 			</p:dataTable>
 
-			<p:dialog header="Car Detail" widgetVar="producentDialog"
+			<p:dialog header="Producent dane" widgetVar="producentDialog"
 				resizable="false" width="200" showEffect="clip" hideEffect="fold"
 				id="dialog">
 
 				<h:panelGrid id="display" columns="1" cellpadding="4">
 
-					<h:outputText value="Model:" />
+					<h:outputText value="Imie:" />
 					<h:outputText value="#{producentBean.producent.nazwa}"
 						style="font-weight:bold" />
+						
 
 				</h:panelGrid>
 			</p:dialog>

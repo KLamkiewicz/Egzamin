@@ -66,6 +66,11 @@ public class GasnicaFormBean implements Serializable {
 		return null;
 	}
 
+	public String deleteGasnicaTabela(){
+		gm.deleteGasnica(gasnica);
+		return null;
+	}
+	
 	public ListDataModel<Gasnica> getAllGasnice() {
 		gasnice.setWrappedData(gm.getAllGasnice());
 		return gasnice;
@@ -127,6 +132,10 @@ public class GasnicaFormBean implements Serializable {
 	public String doEdycji(Gasnica gasnica){
 		this.gasnica = gasnica;
 		return "edytujGasnice";
+	}
+
+	public String doEdycjiTabela(){
+		return "edytujGasnice.xhtml?faces-redirect=true";
 	}
 	
 	public String edytujGasnica(){

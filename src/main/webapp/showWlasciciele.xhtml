@@ -2,45 +2,47 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/ht	ml"
-	xmlns:p="http://primefaces.org/ui" 
-	template="/templates/default.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/templates/default.xhtml">
 
 	<ui:define name="content">
+
 		<h:form id="form">
 
-			<p:contextMenu for="wlasciciel">
+			<p:contextMenu for="producent">
 				<p:menuitem value="Podglad" update="display" icon="ui-icon-search"
-					oncomplete="PF('wlascicielDialog').show()" />
-				<p:menuitem value="Usun" update="wlasciciel" icon="ui-icon-close"
-					actionListener="#{wlascicielBean.deleteWlascicielTabela}" ajax="true" />
+					oncomplete="PF('producentDialog').show()" />
+				<p:menuitem value="Usun" update="producent" icon="ui-icon-close"
+					actionListener="#{wlascicielBean.deleteWlascicielTabela}" />
+				<p:menuitem value="Edytuj" action="#{wlascicielBean.doEdycjiTabela}"
+					icon="ui-icon-arrowrefresh-1-w" ajax="false" />
 			</p:contextMenu>
 
-			<p:dataTable id="wlasciciel" var="car"
-				value="#{wlascicielBean.allWlasciciele}" rowKey="#{car.id}"
+			<p:dataTable id="producent" var="wlasciciel"
+				value="#{wlascicielBean.allWlasciciele}" rowKey="#{wlasciciel.id}"
 				selection="#{wlascicielBean.wlasciciel}" selectionMode="single">
 
-			<p:column headerText="Imie">  
-            	#{car.imie}  
-            </p:column>
-            <p:column headerText="Nazwisko">  
-            	#{car.nazwisko} 
-       		</p:column>
+		<p:column headerText="Imie">  
+            #{wlasciciel.imie}  
+        </p:column>
+        
+        <p:column headerText="Nazwisko">  
+            #{wlasciciel.nazwisko}  
+        </p:column>
 
 
 
 			</p:dataTable>
 
-			<p:dialog header="Car Detail" widgetVar="wlascicielDialog"
+			<p:dialog header="Wlasciciel dane" widgetVar="producentDialog"
 				resizable="false" width="200" showEffect="clip" hideEffect="fold"
 				id="dialog">
 
-				<h:panelGrid id="display" columns="2" cellpadding="4">
+				<h:panelGrid id="display" columns="1" cellpadding="4">
 
 					<h:outputText value="Imie:" />
 					<h:outputText value="#{wlascicielBean.wlasciciel.imie}"
 						style="font-weight:bold" />
-						
 					<h:outputText value="Nazwisko:" />
 					<h:outputText value="#{wlascicielBean.wlasciciel.nazwisko}"
 						style="font-weight:bold" />
@@ -49,6 +51,7 @@
 			</p:dialog>
 
 		</h:form>
+
 
 	</ui:define>
 
