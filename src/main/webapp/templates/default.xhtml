@@ -2,19 +2,16 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><ui:insert name="windowTitle">#{msg.mainWindowTitle}</ui:insert>
+	<title><ui:insert name="windowTitle">Gasnice</ui:insert>
 	</title>
 </h:head>
 <h:body>
   <h:outputStylesheet library="css" name="default.css" target="body" />
-	<div class="heading">
-	  <ui:insert name="heading">
-       #{msg.mainHeading}
-     </ui:insert>
-    </div>
+
 	<div class="menuAndContent">
 	 <div class="menu">
 	   <ui:insert name="menu">
@@ -24,6 +21,18 @@
 	  <div class="content">
 	     <ui:insert name="content" />
        </div>
+	</div>
+	<div class="topMenu">
+		<p:dock position="top">  
+		    <p:menuitem value="Glowna" icon="/images/dock/home.png" url="home.jsf"/>  
+		    <p:menuitem value="Dodaj gasnice" icon="/images/dock/music.png" url="addGasnica.jsf"/>  
+		    <p:menuitem value="Pokaz gasnice" icon="/images/dock/video.png" url="showGasnice.jsf"/>  
+		    <p:menuitem value="Dodaj producenta" icon="/images/dock/email.png" url="addProducent.jsf"/>  
+		    <p:menuitem value="Pokaz producenta" icon="/images/dock/portfolio.png" url="showProducenci.jsf"/>  
+		    <p:menuitem value="Dodaj wlasciciela" icon="/images/dock/link.png" url="addWlasciciel.jsf"/>  
+		    <p:menuitem value="Pokaz wlasciciela" icon="/images/dock/rss.png" url="showWlasciciele.jsf"/>  
+  
+		</p:dock>  
 	</div>
 </h:body>
 </html>
