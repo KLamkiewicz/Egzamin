@@ -18,10 +18,12 @@
 					required="#{true}" />
 				<h:message for="pojemnosc" />
 
-				<h:outputText value="Rok produkcji" />
-				<p:calendar value="#{gasnicaBean.gasnica.dataProdukcji}" id="dataProdukcji" navigator="true"/> 
-				
-				<h:message for="rokProdukcji" />
+
+
+				<h:outputText value="Data produkcji" />
+					<p:calendar value="#{gasnicaBean.gasnica.dataProdukcji}" id="dataProdukcji" navigator="true"/> 
+				<h:message for="dataProdukcji" />
+
 
 				<h:outputText value="Kod seryjny" />
 					<h:inputText id="kodSeryjny" value="#{gasnicaBean.gasnica.kodSeryjny}" validator="#{gasnicaBean.uniqueKod}" required="#{true}">
@@ -43,7 +45,7 @@
 
 				<h:outputText value="Wlasciciel" />
 				<h:selectManyListbox id="manyMenu" value="#{gasnicaBean.wlascicieleTemp}"
-					converter="listaConverter">
+					converter="listaConverter" required="true">
 					<f:selectItems value="#{gasnicaBean.allWlasciciele}" var="c"
 						itemValue="#{c}" itemLabel="#{c.imie} #{c.nazwisko}" />
 				</h:selectManyListbox>
@@ -57,9 +59,8 @@
 
 			</h:panelGrid>
 			<h:commandButton value="OK" action="#{gasnicaBean.addGasnica()}" />
-
-
-
 		</h:form>
+		
+		
 	</ui:define>
 </ui:composition>

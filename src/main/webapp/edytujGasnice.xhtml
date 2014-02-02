@@ -6,47 +6,53 @@
 	template="/templates/default.xhtml"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:o="http://omnifaces.org/ui"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
 
 		<h:form id="gasnicaForm">
-			<h:panelGrid columns="2" id="gasnica">
+			<h:panelGrid columns="3" id="gasnica">
 
 				<h:outputText value="Pojemnosc" />
 				<h:inputText id="pojemnosc" value="#{gasnicaBean.gasnica.pojemnosc}"
 					required="#{true}" />
-					
-				<h:outputText value="Rok produkcji" />
-				<h:inputText id="rokProdukcji" value="#{gasnicaBean.gasnica.rokProdukcji}" />
+				<h:message for="pojemnosc" />
 
-				<h:outputText value="Producent"  />
-				<h:selectOneMenu value="#{gasnicaBean.producentId}" required="true" requiredMessage="Gasnica musi posiadac producenta"> 
-					<f:selectItem itemLabel="Wybierz producenta"/>
-					<f:selectItems value="#{gasnicaBean.allProducenci}" var="c" itemValue="#{c.id}" itemLabel="#{c.nazwa}"/>
-				</h:selectOneMenu> 
+				<h:outputText value="Data produkcji" />
+					<p:calendar value="#{gasnicaBean.gasnica.dataProdukcji}" id="dataProdukcji" navigator="true"/> 
+				<h:message for="dataProdukcji" />
 
-				 
-				<h:outputText value = "Wlasciciel"  />				
-				<h:selectManyListbox value="#{gasnicaBean.wlascicieleTemp}" converter="listaConverter">
-					<f:selectItems  value="#{gasnicaBean.allWlasciciele}" var="c" itemValue="#{c}" itemLabel="#{c.imie} #{c.nazwisko}"/>
+				<h:outputText value="Kod seryjny" />
+				<h:outputText value="#{gasnicaBean.gasnica.kodSeryjny}"/>
+				<h:message for="" />
+
+				<h:outputText value="Producent" />
+				<h:selectOneMenu id="oneMenu" value="#{gasnicaBean.producentId}" required="true"
+					requiredMessage="Gasnica musi posiadac producenta">
+					<f:selectItem itemLabel="Wybierz producenta" />
+					<f:selectItems value="#{gasnicaBean.allProducenci}" var="c"
+						itemValue="#{c.id}" itemLabel="#{c.nazwa}" />
+				</h:selectOneMenu>
+				<h:message for="oneMenu" />
+
+				<h:outputText value="Wlasciciel" />
+				<h:selectManyListbox id="manyMenu" value="#{gasnicaBean.wlascicieleTemp}"
+					converter="listaConverter" required="true">
+					<f:selectItems value="#{gasnicaBean.allWlasciciele}" var="c"
+						itemValue="#{c}" itemLabel="#{c.imie} #{c.nazwisko}" />
 				</h:selectManyListbox>
+				<h:message for="manyMenu" />
 				
 				<!-- 
 				<p:pickList value="#{gasnicaBean.tempList}" var="entity" itemValue="#{entity}" itemLabel="#{entity.imie}">
             		<o:converter converterId="omnifaces.ListConverter" list="#{gasnicaBean.allWlasciciele}" />
         		</p:pickList>
 				-->
-				
-			</h:panelGrid>
-			<h:commandButton value="OK" action="#{gasnicaBean.edytujGasnica}"/>
 
-			<h:panelGrid>
-				<h:messages for="" />
-				<h:messages id="messages" showDetail="#{true}"
-					showSummary="#{false}" />
 			</h:panelGrid>
+			<h:commandButton value="OK" action="#{gasnicaBean.edytujGasnica()}" />
+
+
 
 		</h:form>
 	</ui:define>

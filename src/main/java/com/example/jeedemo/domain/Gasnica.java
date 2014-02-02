@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
 
 @Entity
 @NamedQuery(name ="gasnica.getAllGasnice" , query = "Select g FROM Gasnica g ")
@@ -24,8 +26,11 @@ public class Gasnica {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Min(300)
 	private double pojemnosc;
-	//private int rokProdukcji;
+//	private int rokProdukcji;
+	@Temporal(TemporalType.DATE)
+	@Past
 	private Date dataProdukcji;
 	private String kodSeryjny = "";
 	@ManyToOne
