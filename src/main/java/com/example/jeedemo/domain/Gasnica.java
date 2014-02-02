@@ -22,6 +22,7 @@ public class Gasnica {
 	private Long id;
 	private double pojemnosc;
 	private int rokProdukcji;
+	private String kodSeryjny = "";
 	@ManyToOne
 	private Producent producent;
 	@ManyToMany
@@ -55,6 +56,12 @@ public class Gasnica {
 	}
 	public void setWlasciciele(List<Wlasciciel> wlasciciele) {
 		this.wlasciciele = wlasciciele;
+	}
+	public String getKodSeryjny() {
+		return kodSeryjny;
+	}
+	public void setKodSeryjny(String kodSeryjny) {
+		this.kodSeryjny = kodSeryjny;
 	}
 
 
