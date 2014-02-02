@@ -130,9 +130,11 @@ public class GasnicaFormBean implements Serializable {
 	}
 	
 	public String edytujGasnica(){
+		gasnica.setProducent(gm.getEm().find(Producent.class, producentId));
+		gasnica.setWlasciciele(wlascicieleTemp);
 		gm.edytujGasnica(gasnica);
 		this.gasnica = new Gasnica();
-		return null;
+		return "showGasnice";
 	}
 	
 }

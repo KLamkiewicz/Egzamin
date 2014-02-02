@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name ="producent.getProducenci" , query = "Select p FROM Producent p where p.deleted = false ")
+//@NamedQuery(name ="producent.getProducenci" , query = "Select p FROM Producent p where p.deleted = false ")
+@NamedQuery(name ="producent.getProducenci" , query = "Select p FROM Producent p")
 public class Producent {
 	
 	@Id

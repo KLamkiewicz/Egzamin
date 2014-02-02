@@ -6,11 +6,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.example.jeedemo.domain.Gasnica;
 import com.example.jeedemo.domain.Producent;
 
 @Stateless
 public class ProducentManager {
 
+	private List<Gasnica> listaGasnic;
+	
 	@PersistenceContext
 	EntityManager em;
 	
@@ -24,9 +27,15 @@ public class ProducentManager {
 	}
 	
 	public void deleteProducent(Producent producent){
+		listaGasnic = em.createNamedQuery("gasnica.getAllGasnice").getResultList();
 		producent = em.find(Producent.class, producent.getId());
-		producent.setDeleted(true);
-		//em.remove(producent);
+		for(Gasnica g : listaGasnic){
+			if(g.getProducent().equals(producent)){
+				g.setProducent(null);
+			}
+		}
+		//producent.setDeleted(true);
+		em.remove(producent);
 	}
 	
 	public void edytujProducent(Producent producent){
