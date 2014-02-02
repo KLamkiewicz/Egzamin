@@ -2,16 +2,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
   <div>
 	<h:form>
+	
+	<!--  
 	  <ul>
 		<li>
 		  <h:commandLink action="home?faces-redirect=true">
 			<h:outputText value="#{msg.linkHome}" />
 		  </h:commandLink>
 		</li>
-		<!-- 
+	
 		<li>
 		  <h:commandLink action="add?faces-redirect=true">
 			<h:outputText value="#{msg.personAddLabel}" />
@@ -26,7 +29,6 @@
 			 <h:outputText value=" Sell car" />
 		  </h:commandLink>
 		</li>
-		-->
 		<li>
 		  <h:commandLink action="addGasnica">
 			 <h:outputText value="#{msg.addGasnica}" />
@@ -58,6 +60,25 @@
 		  </h:commandLink>
 		</li>
 	</ul>
+	-->
+	<p:menu>
+		<p:submenu label="Glowna">  
+            <p:menuitem value="Strona glowna" action="home?faces-redirect=true"/>   
+        </p:submenu>
+        <p:submenu label="Gasnice">  
+            <p:menuitem value="Dodaj gasnice" action="addGasnica"/> 
+            <p:menuitem value="Lista gasnic" action="showGasnice"/>   
+        </p:submenu>
+        <p:submenu label="Wlasciciele">  
+            <p:menuitem value="Dodaj wlasciciela" action="addWlasciciel"/> 
+            <p:menuitem value="Lista wlascicieli" action="showWlasciciele"/>   
+        </p:submenu>
+        <p:submenu label="Producenci">  
+            <p:menuitem value="Dodaj producenta" action="addProducent"/> 
+            <p:menuitem value="Lista producentow" action="showProducenci"/>   
+        </p:submenu>    
+	</p:menu>
+	
    </h:form>
   </div>
 </ui:composition>
